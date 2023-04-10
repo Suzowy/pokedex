@@ -7,13 +7,11 @@ const getPokemon = async () => {
     const responseToJson = await response.json();
     let allCharacters = responseToJson.results;
 
-   
-    const pintaPokemons = () => {
+    const pintaPokemons = (pokemonList = allCharacters) => {
         const ul = document.querySelector('.listado');
         let ulContent = '';
-
         let cont = 0;
-        allCharacters.map(pokemon => {
+        pokemonList.map(pokemon => {
             cont = ++cont;
             ulContent += `<li>
                           <h2>${pokemon.name}</h2>
@@ -22,25 +20,23 @@ const getPokemon = async () => {
         })
         ul.innerHTML = ulContent;
     }
-   pintaPokemons();
-  };
+    pintaPokemons();
+
+    const takeInput = () => {
+        const input = document.body.querySelector("input");
+        input.addEventListener("input",() =>
+            searchCharacter(allCharacters, input.value)
+        );
+    };
+    takeInput();
+
+    const searchCharacter = (pokemonList, filtro) => {
+        let filteredCharacters = pokemonList.filter((pokemon) =>
+            pokemon.name.toLowerCase().includes(filtro.toLowerCase())
+        );
+        pintaPokemons(filteredCharacters);
+    };
+};
 
 getPokemon();
-
-const takeInput = (allCharacters) => {
-  console.log(allCharacters);
-  const input = document.body.querySelector("input");
-  input.addEventListener("input",() =>
-    searchCharacter(pokemon, input.value)
-  );
-  console.log(input);
-};
-
-const searchCharacter = (pokemon, filtro) => {
-  let filteredCharacters = pokemon.filter((pokemon) =>
-    pokemon.name.toLowerCase().includes(filtro.toLowerCase())
-  );
-
-  pintaPokemons(filteredCharacters);
-};
 
