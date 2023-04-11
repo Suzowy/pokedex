@@ -7,7 +7,7 @@ const getPokemon = async () => {
     const responseToJson = await response.json();
     let allCharacters = responseToJson.results;
     console.log(allCharacters);
-
+   
 
     const pintaPokemons = (pokemonList = allCharacters) => {
         const ul = document.querySelector('.listado');
@@ -17,7 +17,7 @@ const getPokemon = async () => {
             cont = ++cont;
             ulContent += `<li>
                           <h2>${pokemon.name}</h2>
-                          <img src="${api_get_img}${cont}.png"/>
+                          <img src="${api_get_img}${cont}.png">
                           </li>`;
         })
         ul.innerHTML = ulContent;
@@ -28,16 +28,23 @@ const getPokemon = async () => {
         const input = document.body.querySelector("input");
         input.addEventListener("input", () =>
             searchCharacter(allCharacters, input.value)
+           
         );
+        
     };
     takeInput();
 
     const searchCharacter = (pokemonList, filtro) => {
         let filteredCharacters = pokemonList.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(filtro.toLowerCase())
+            pokemon.name.toLowerCase().includes(filtro.toLowerCase()) 
         );
-        pintaPokemons(filteredCharacters);
+        if (filteredCharacters.length === 0) {
+            alert(`El Pokemon ${filtro} no existe,vuelve a intentarlo`);
+        } else {
+            pintaPokemons(filteredCharacters);
+        }
     };
-};
+    
+    };
 
 getPokemon();
