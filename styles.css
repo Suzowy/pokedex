@@ -1,5 +1,4 @@
 * {
-  text-align: center;
   background-color: black;
   border-radius: 50px;
 }
@@ -21,6 +20,7 @@
 .input {
   width: 300px;
   height: 40px;
+  text-align: center;
   border-radius: 50px;
   border-bottom-color: rgba(70, 89, 156, 1);
   border-top-color: rgba(229, 37, 42, 1);
@@ -43,6 +43,7 @@ body {
 }
 
 li {
+  box-shadow: black 10px 10px 10px;
   background-color: rgba(229, 37, 42, 1);
   list-style-type: none;
   text-align: center;
@@ -63,6 +64,7 @@ h2 {
 }
 
 header {
+  text-align: center;
   height: 50%;
   background-color: rgba(255, 211, 60, 1);
   margin-top: 5px;

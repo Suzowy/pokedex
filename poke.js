@@ -1,66 +1,66 @@
 const api_get_pokemon = `https://pokeapi.co/api/v2/pokemon`;
-const api_get_img = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/`;
+const api_get_imagen = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/`;
 const num_pokemon = 151;
 
 const getPokemon = async () => {
-  const response = await fetch(`${api_get_pokemon}?offset=0&limit=${num_pokemon}`);
-  const responseToJson = await response.json();
-  let allCharacters = responseToJson.results;
-  console.log(allCharacters);
-
-  const pintaPokemons = (pokemonList = allCharacters, imageList = []) => {
-    const ul = document.querySelector('.listado');
-    let ulContent = '';
-    let cont = 0;
-    pokemonList.map(pokemon => {
-      cont = ++cont;
-      ulContent += `<li>
-                    <h2>${pokemon.name}</h2>
-                    <img src="${imageList[cont - 1]}">
-                    </li>`;
-    })
-    ul.innerHTML = ulContent;
-  }
-  
-  const getAllImages = async () => {
     const response = await fetch(`${api_get_pokemon}?offset=0&limit=${num_pokemon}`);
     const responseToJson = await response.json();
-    let allImages = responseToJson.results.map((pokemon) => `${api_get_img}${pokemon.url.split("/")[6]}.png`);
-    return allImages;
-  }
+    let todosPokemon = responseToJson.results;
+    console.log(todosPokemon);
 
-  const takeInput = async () => {
-    const input = document.body.querySelector("input");
-    input.addEventListener("input", async () => {
-      const filteredCharacters = searchCharacter(allCharacters, input.value);
-      const allImages = await getAllImages();
-      const filteredImages = searchImages(allImages, filteredCharacters);
-      if (filteredCharacters.length === 0) {
-        alert(`El Pokemon ${input.value} no existe, vuelve a intentarlo`);
-      } else {
-        pintaPokemons(filteredCharacters, filteredImages);
-      }
-    });
-  };
-  
-  const searchCharacter = (pokemonList, filtro) => {
-    return pokemonList.filter((pokemon) =>
-      pokemon.name.toLowerCase().includes(filtro.toLowerCase())
-    );
-  };
+    const pintaPokemons = (pokemonLista = todosPokemon, imagenLista = []) => {
+        const ul = document.querySelector('.listado');
+        let ulContent = '';
+        let cont = 0;
+        pokemonLista.map(pokemon => {
+            cont = ++cont;
+            ulContent += `<li>
+                    <h2>${pokemon.name}</h2>
+                    <img src="${imagenLista[cont - 1]}">
+                    </li>`;
+        })
+        ul.innerHTML = ulContent;
+    }
 
-  const searchImages = (imageList, pokemonList) => {
-    const filteredImages = [];
-    pokemonList.forEach(pokemon => {
-      const index = allCharacters.findIndex(char => char.name === pokemon.name);
-      filteredImages.push(imageList[index]);
-    });
-    return filteredImages;
-  }
+    const muestraImagen = async () => {
+        const response = await fetch(`${api_get_pokemon}?offset=0&limit=${num_pokemon}`);
+        const responseToJson = await response.json();
+        const fotos = responseToJson.results.map((pokemon) => `${api_get_imagen}${pokemon.url.split("/")[6]}.png`);
+        return fotos;
+    }
 
-  const allImages = await getAllImages();
-  pintaPokemons(allCharacters, allImages);
-  takeInput();
+    const buscador = async () => {
+        const input = document.body.querySelector("input");
+        input.addEventListener("input", async () => {
+            const filtraPoke = buscaPokemon(todosPokemon, input.value);
+            const fotos = await muestraImagen();
+            const filtraImg = buscaImagen(fotos, filtraPoke);
+            if (filtraPoke.length === 0) {
+                alert(`El nombre del Pokemon ${input.value} no existe, vuelve a intentarlo`);
+            } else {
+                pintaPokemons(filtraPoke, filtraImg);
+            }
+        });
+    };
+
+    const buscaPokemon = (pokemonLista, filtro) => {
+        return pokemonLista.filter((pokemon) =>
+            pokemon.name.toLowerCase().includes(filtro.toLowerCase())
+        );
+    };
+
+    const buscaImagen = (imagenLista, pokemonList) => {
+        const filtraImg = [];
+        pokemonList.forEach(pokemon => {
+            const index = todosPokemon.findIndex(poke => poke.name === pokemon.name);
+            filtraImg.push(imagenLista[index]);
+        });
+        return filtraImg;
+    }
+
+    const fotos = await muestraImagen();
+    pintaPokemons(todosPokemon, fotos);
+    buscador();
 };
 
 getPokemon();
