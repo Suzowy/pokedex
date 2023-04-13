@@ -37,7 +37,12 @@ const getPokemon = async () => {
             const fotos = await muestraImagen();
             const filtraImg = buscaImagen(fotos, filtraPoke);
             if (filtraPoke.length === 0) {
-                alert(`El nombre del Pokemon ${input.value} no existe, vuelve a intentarlo`);
+                console.log(`El nombre del Pokemon ${input.value} no existe, vuelve a intentarlo`);
+                const imagenError = document.createElement("img");
+                imagenError.src = "giphy.gif";
+                const ul = document.querySelector('.listado');
+                ul.innerHTML = '';
+                ul.appendChild(imagenError);
             } else {
                 pintaPokemons(filtraPoke, filtraImg);
             }
