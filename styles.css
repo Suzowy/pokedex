@@ -8,6 +8,7 @@
   height: 100%;
 }
 
+  
 .pokeball {
   background-color: rgba(255, 211, 60, 1);
   width: 60px;
@@ -32,7 +33,7 @@ body {
 }
 
 .listado {
-  background-color: rgba(70, 89, 156, 1);
+  background-color: rgb(0, 0, 0);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -41,9 +42,7 @@ body {
 }
 
 li {
-  color: crimson;
-  box-shadow: black 10px 10px 10px;
-  background-color: rgba(229, 37, 42, 1);
+  box-shadow: rgb(133, 183, 214) 10px 10px 10px;
   list-style-type: none;
   text-align: center;
   width: 120px;
@@ -59,7 +58,7 @@ h2 {
   font-style: oblique;
   font-size: 10px;
   background-color: black;
-  border: 2px solid yellow;
+  border: 2px solid rgb(255, 255, 110);
   padding: 1px;
 }
 p{
@@ -90,8 +89,7 @@ header {
   h2 {
     font-size: 7px;
   }
-
-  img {
+  img{
     width: 100%;
   }
 
