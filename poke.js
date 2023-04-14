@@ -82,7 +82,6 @@ ul.innerHTML = ulContent;
       }
     });
   };
-
   const buscaPokemon = (pokemonLista, filtro) => {
     return pokemonLista.filter((pokemon) =>
       pokemon.name.toLowerCase().includes(filtro.toLowerCase())
