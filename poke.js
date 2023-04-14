@@ -10,6 +10,7 @@ const getPokemon = async () => {
   let todosPokemon = responseToJson.results;
   console.log(todosPokemon);
 
+
   const pintaPokemons = (pokemonLista = todosPokemon, imagenLista = []) => {
     const ul = document.querySelector(".listado");
     let ulContent = "";
@@ -31,7 +32,7 @@ const getPokemon = async () => {
           : tipo === "normal"
           ? "burlywood"
           : tipo === "poison"
-          ? "purple"
+          ? "#860c9e"
           : tipo === "electric"
           ? "yellow"
           : tipo === "ground"
@@ -43,7 +44,7 @@ const getPokemon = async () => {
           : tipo === "ghost"
           ? "white"
           : tipo === "fighting"
-          ? "black"
+          ? "#0e7957"
           : tipo === "psychic"
           ? "silver"
           : tipo === "ice"
@@ -51,15 +52,17 @@ const getPokemon = async () => {
           : tipo === "dragon"
           ? "crimson"
           : tipo;
-      ulContent += `<li style="background-color: ${colorFondo};">
-                    <h2>${pokemon.name}</h2>
-                    <img src="${imagen.url}">
-                    <p>Tipo: ${tipo}</p>
-                    </li>`;
-    });
-    ul.innerHTML = ulContent;
+          ulContent += `<li>
+                <h2>${pokemon.name}</h2>
+                <img src="${imagen.url}">
+                <p style="background-color: ${colorFondo};">${tipo}</p>
+              </li>`;
+
+});
+ul.innerHTML = ulContent;
   };
 
+  
   const buscador = async () => {
     const input = document.body.querySelector("input");
     input.addEventListener("input", async () => {
@@ -118,4 +121,4 @@ const getPokemon = async () => {
   buscador();
 };
 
-getPokemon();
+getPokemon(); 
