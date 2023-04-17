@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+
 * {
   background-color: black;
   border-radius: 50px;
@@ -21,6 +24,7 @@
   width: 300px;
   height: 40px;
   text-align: center;
+  font-family: 'Gloria Hallelujah', cursive;
   border-radius: 50px;
   border-bottom-color: rgba(70, 89, 156, 1);
   border-top-color: rgba(229, 37, 42, 1);
@@ -29,7 +33,7 @@
 
 body {
   background-color: rgba(255, 211, 60, 1);
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Gloria Hallelujah', cursive;
 }
 
 .listado{
