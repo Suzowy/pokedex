@@ -1,5 +1,6 @@
 const api_get_pokemon = `https://pokeapi.co/api/v2/pokemon`;
 const api_get_imagen = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/`;
+
 const num_pokemon = 150;
 
 const getPokemon = async () => {
@@ -18,7 +19,6 @@ const getPokemon = async () => {
     pokemonLista.forEach((pokemon, index) => {
       cont++;
       const imagen = imagenLista[index];
-      //he agregado los colores por tipo desde la clase de ayer
       const tipo = imagen.tipo;
       const colorFondo =
         tipo === "grass"
@@ -70,8 +70,7 @@ ul.innerHTML = ulContent;
       const fotos = await muestraImagen();
       const filtraImg = buscaImagen(fotos, filtraPoke);
       if (filtraPoke.length === 0) {
-        //console.error(`El nombre del Pokemon ${input.value} no existe, vuelve a intentarlo`);
-        // y he quitado el alert y agregado la imagen de pikachu triste cuando el nombre no existe
+       
         const imagenError = document.createElement("img");
         imagenError.src = "giphy.gif";
         const ul = document.querySelector(".listado");
@@ -87,6 +86,38 @@ ul.innerHTML = ulContent;
       pokemon.name.toLowerCase().includes(filtro.toLowerCase())
     );
   };
+
+
+  const buscadorTipo = async () => {
+    const select = document.getElementById("filtro-tipo");
+    const btnBuscar = document.getElementById("btn-buscar");
+  
+    btnBuscar.addEventListener("click", async () => {
+      const tipo = select.value;
+      const pokemonesFiltrados = await filtraPorTipo(todosPokemon, tipo);
+      const fotosFiltradas = buscaImagen(fotos, pokemonesFiltrados);
+      pintaPokemons(pokemonesFiltrados, fotosFiltradas);
+    });
+  };
+  
+  const filtraPorTipo = async (pokemonLista, tipo) => {
+    if (tipo === "") {
+      return pokemonLista;
+    } else {
+      const pokemonesFiltrados = await Promise.all(
+        pokemonLista.map(async (pokemon) => {
+          const pokemonDataResponse = await fetch(pokemon.url);
+          const pokemonData = await pokemonDataResponse.json();
+          const tipoPokemon = pokemonData.types[0].type.name;
+          return tipoPokemon === tipo ? pokemon : null;
+        })
+      );
+      return pokemonesFiltrados.filter((pokemon) => pokemon !== null);
+    }
+  };
+  
+
+
 
  
   const muestraImagen = async () => {
@@ -118,6 +149,7 @@ ul.innerHTML = ulContent;
   const fotos = await muestraImagen();
   pintaPokemons(todosPokemon, fotos);
   buscador();
+  buscadorTipo();
 };
 
 getPokemon(); 
