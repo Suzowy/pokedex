@@ -1,7 +1,7 @@
 const api_get_pokemon = `https://pokeapi.co/api/v2/pokemon`;
 const api_get_imagen = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/`;
 
-const num_pokemon = 150;
+const num_pokemon = 898;
 
 const getPokemon = async () => {
   const response = await fetch(
