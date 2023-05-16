@@ -202,7 +202,9 @@ header {
   img {
     width: 100%;
   }
-
+  .error-image {
+    width:30%;
+  }
   .error-text {
     font-size: 20px;
     color: #c54949;
