@@ -1,7 +1,7 @@
 const api_get_pokemon = `https://pokeapi.co/api/v2/pokemon`;
 const api_get_imagen = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/`;
 
-const num_pokemon = 898;
+const num_pokemon = 20;
 
 const getPokemon = async () => {
   const response = await fetch(
@@ -72,7 +72,7 @@ ul.innerHTML = ulContent;
       if (filtraPoke.length === 0) {
        
         const imagenError = document.createElement("img");
-        imagenError.src = "giphy.gif";
+        imagenError.src = "pikachu.gif";
         const ul = document.querySelector(".listado");
         ul.innerHTML = "";
         ul.appendChild(imagenError);
