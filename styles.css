@@ -187,13 +187,7 @@ header {
     width: 25%;
 
   }
-  li:hover {
-    background-image: url('Se0P.gif');
-    background-position:center;
-    background-size:center;
-    box-shadow: rgba(250, 68, 68, 0.977) 10px 10px 10px;
-  
-  }
+
 
   h2 {
     font-size: 7px;
