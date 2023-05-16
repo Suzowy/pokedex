@@ -24,45 +24,45 @@ const getPokemon = async () => {
         tipo === "grass"
           ? "#128512"
           : tipo === "fire"
-          ? "#ff7801"
-          : tipo === "water"
-          ? "#6495ed "
-          : tipo === "bug"
-          ? "#f791c4"
-          : tipo === "normal"
-          ? "burlywood"
-          : tipo === "poison"
-          ? "#860c9e"
-          : tipo === "electric"
-          ? "yellow"
-          : tipo === "ground"
-          ? "#75351999"
-          : tipo === "fairy"
-          ? "fuchsia"
-          : tipo === "rock"
-          ? "grey"
-          : tipo === "ghost"
-          ? "white"
-          : tipo === "fighting"
-          ? "#0e7957"
-          : tipo === "psychic"
-          ? "silver"
-          : tipo === "ice"
-          ? "#80ebd6ec "
-          : tipo === "dragon"
-          ? "crimson"
-          : tipo;
-          ulContent += `<li>
+            ? "#ff7801"
+            : tipo === "water"
+              ? "#6495ed "
+              : tipo === "bug"
+                ? "#f791c4"
+                : tipo === "normal"
+                  ? "burlywood"
+                  : tipo === "poison"
+                    ? "#860c9e"
+                    : tipo === "electric"
+                      ? "yellow"
+                      : tipo === "ground"
+                        ? "#75351999"
+                        : tipo === "fairy"
+                          ? "fuchsia"
+                          : tipo === "rock"
+                            ? "grey"
+                            : tipo === "ghost"
+                              ? "white"
+                              : tipo === "fighting"
+                                ? "#0e7957"
+                                : tipo === "psychic"
+                                  ? "silver"
+                                  : tipo === "ice"
+                                    ? "#80ebd6ec "
+                                    : tipo === "dragon"
+                                      ? "crimson"
+                                      : tipo;
+      ulContent += `<li>
                 <h2>${pokemon.name}</h2>
                 <img src="${imagen.url}">
                 <p style="background-color: ${colorFondo};">${tipo}</p>
               </li>`;
 
-});
-ul.innerHTML = ulContent;
+    });
+    ul.innerHTML = ulContent;
   };
 
-  
+
   const buscador = async () => {
     const input = document.body.querySelector("input");
     input.addEventListener("input", async () => {
@@ -70,12 +70,18 @@ ul.innerHTML = ulContent;
       const fotos = await muestraImagen();
       const filtraImg = buscaImagen(fotos, filtraPoke);
       if (filtraPoke.length === 0) {
-       
         const imagenError = document.createElement("img");
-        imagenError.src = "pikachu.gif";
+        imagenError.src = "tumblr_lmwsamrrxT1qagx30.0.0.gif";
+        imagenError.classList.add("error-image");
         const ul = document.querySelector(".listado");
         ul.innerHTML = "";
         ul.appendChild(imagenError);
+
+        // Texto agregado
+        const textoError = document.createElement("h1");
+        textoError.textContent = "Oh no... ese Pokémon no existe, prueba otra vez.";
+        textoError.classList.add("error-text");
+        ul.appendChild(textoError);
       } else {
         pintaPokemons(filtraPoke, filtraImg);
       }
@@ -91,7 +97,7 @@ ul.innerHTML = ulContent;
   const buscadorTipo = async () => {
     const select = document.getElementById("filtro-tipo");
     const btnBuscar = document.getElementById("btn-buscar");
-  
+
     btnBuscar.addEventListener("click", async () => {
       const tipo = select.value;
       const pokemonesFiltrados = await filtraPorTipo(todosPokemon, tipo);
@@ -99,7 +105,7 @@ ul.innerHTML = ulContent;
       pintaPokemons(pokemonesFiltrados, fotosFiltradas);
     });
   };
-  
+
   const filtraPorTipo = async (pokemonLista, tipo) => {
     if (tipo === "") {
       return pokemonLista;
@@ -115,11 +121,11 @@ ul.innerHTML = ulContent;
       return pokemonesFiltrados.filter((pokemon) => pokemon !== null);
     }
   };
-  
 
 
 
- 
+
+
   const muestraImagen = async () => {
     const fotos = await Promise.all(
       responseToJson.results.map(async (pokemon) => {

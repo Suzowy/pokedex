@@ -95,7 +95,7 @@ li {
   text-align: center;
   width: 10%;
   margin: 15px;
-  border-radius: 15px;
+  border-radius: 20px;
   padding: 20px;
   border: 2px solid white;
   }
@@ -133,6 +133,19 @@ header {
   padding-top: 0px;
   margin-top: 0px;
 }
+/* Clase para la imagen de error */
+.error-image {
+  width: 40%;
+}
+
+/* Clase para el texto de error */
+.error-text {
+  color: #c54949;
+  font-weight: bold;
+
+}
+
+
 
 @media (max-width: 600px) {
  
@@ -168,7 +181,9 @@ header {
   img{
     width: 100%;
   }
-
+  .error-text {
+font-size: 20px;
+    color: #c54949;
+    font-weight: bold;
  
-  
-  }
+  }}
