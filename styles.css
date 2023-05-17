@@ -105,11 +105,12 @@ li {
 }
 
 li:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
   background-image: url('Se0P.gif');
+  background-repeat: no-repeat;
   background-position: center;
-  background-size: center;
-  box-shadow: rgba(248, 127, 127, 0.977) 10px 10px 10px;
+  background-size: auto;
+  box-shadow: rgba(253, 69, 69, 0.977) 10px 10px 10px;
 
 }
 
@@ -145,12 +146,13 @@ header {
 
 /* Clase para la imagen de error */
 .error-image {
-  width:25%;
+  width:50%;
+  height: 50%;
 }
 
 /* Clase para el texto de error */
 .error-text {
-  color: #cb0303;
+  color: #ff0000;
   font-weight: bold;
 
 }
@@ -185,9 +187,14 @@ header {
 
   li {
     width: 25%;
+    height: 30%;
 
   }
-
+li:hover{
+  background-position: center;
+  background-size: cover;
+ 
+}
 
   h2 {
     font-size: 7px;
@@ -196,13 +203,16 @@ header {
   img {
     width: 100%;
   }
-  .error-image {
-    width:30%;
-  }
+
   .error-text {
     font-size: 20px;
-    color: #c54949;
+   text-decoration: underline;
+    color: #ffffff;
     font-weight: bold;
 
+  }
+  .error-image {
+    width:100%;
+    
   }
 }
