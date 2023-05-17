@@ -8,17 +8,18 @@
   border-radius: 20px;
   background: linear-gradient(#ffd33c,rgba(70, 89, 156, 1));
 margin-top: 20px;
+padding:50px;
  
 
 }
 .pokemon1{
-  width:100px;
-  height: 100px;
+  width:150px;
+  height: 150px;
  
     }
     .pokemon2{
-      width: 100px;
-      height: 100px;
+      width: 150px;
+      height: 150px;
     }
 
 
@@ -75,14 +76,14 @@ margin-top: 20px;
 .luchar{
   width: 100px;
   height: 40px;
+  margin-inline: 20px;
   text-align: center;
   font-family: 'Gloria Hallelujah', cursive;
   font-weight: bolder;
   border-radius: 50px;
-  border: 3px, #ffffff;
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-  pointer-events: hand;
+  background-color: rgb(255, 0, 0);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
 }
 body {
   background-color: #ffd33c;
@@ -241,23 +242,27 @@ li:hover{
     
   }
   .div-lucha{
- 
-  
+  font-size: 12px;
     align-items: center;
     text-align: center;
     border-radius: 50px;
-  margin-top: 20px;
+    margin-top: 10px;
    
   
   }
+.luchar{
+  width: 75px;
+  
+}
+
   .pokemon1{
-    width:50px;
-    height: 50px;
+    width:60px;
+    height:60px;
    
       }
       .pokemon2{
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
       }
   
   
