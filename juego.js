@@ -10,15 +10,33 @@ const getPokemon = async () => {
     const ul = document.querySelector(".listado");
     let ulContent = "";
     pokemonLista.forEach((pokemon, index) => {
-      const imagen = imagenLista[index];
-      ulContent += `<li>
-        <h2>${pokemon.name}</h2>
-        <img src="${imagen.url}">
-      </li>`;
-    });
+        const imagen = imagenLista[index];
+        ulContent += `<li>
+          <h2>${pokemon.name}</h2>
+          <img src="${imagen.url}" data-name="${pokemon.name}" class="pokemon-img">
+        </li>`;
+      });
     ul.innerHTML = ulContent;
   };
 
+  function seleccionarPokemon(pokemonName) {
+    const pokemon1 = todosPokemon.find(pokemon => pokemon.name === pokemonName);
+    if (pokemon1) {
+      const [pokemon2] = getRandomPokemon();
+      luchaPokemon(pokemon1, pokemon2);
+    } else {
+      console.log("No se encontró un Pokémon con ese nombre.");
+    }
+  }
+
+
+  document.addEventListener("click", (event) => {
+    if (event.target.classList.contains("pokemon-img")) {
+      const pokemonName = event.target.getAttribute("data-name");
+      seleccionarPokemon(pokemonName);
+    }
+  });
+  
   const getRandomPokemon = () => {
     const index1 = Math.floor(Math.random() * todosPokemon.length);
     let index2 = Math.floor(Math.random() * todosPokemon.length);
@@ -27,7 +45,7 @@ const getPokemon = async () => {
     }
     return [todosPokemon[index1], todosPokemon[index2]];
   };
-  
+
   const luchaPokemon = async (pokemon1, pokemon2) => {
     const [response1, response2] = await Promise.all([
       fetch(pokemon1.url),
@@ -95,7 +113,7 @@ const getPokemon = async () => {
     }
   });
 
-  pintaPokemons();
+  pintaPokemons(todosPokemon, todosPokemon.map((pokemon, index) => ({ url: `${api_get_imagen}${index + 1}.png` })));
 };
 
 getPokemon();

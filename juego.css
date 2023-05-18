@@ -2,11 +2,34 @@
 
 body {
     font-family: 'Gloria Hallelujah', cursive;
-    background-image: url('1559746338_161464_1559749660_rrss_normal.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+   background-color: burlywood;
 
+    
+}
+ul.listado {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    list-style: none;
+    
+  }
+  
+  ul.listado li {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    flex-basis: calc(10.10% - 5px);
+    max-width: 300px;
+    
+  }
+  
+  ul.listado li img {
+    width: 50%;
+    height: auto;
+    max-width: 80px;
+    background-color: antiquewhite;
+    border-radius: 50px;
+  }
 .luchar {
     width: 150px;
     height: 40px;
