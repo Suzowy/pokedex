@@ -1,34 +1,23 @@
 const api_get_pokemon = `https://pokeapi.co/api/v2/pokemon`;
 const api_get_imagen = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/`;
-
 const num_pokemon = 150;
 
 const getPokemon = async () => {
   const response = await fetch(`${api_get_pokemon}?offset=0&limit=${num_pokemon}`);
-  const responseToJson = await response.json();
-  let todosPokemon = responseToJson.results;
+  const { results: todosPokemon } = await response.json();
 
   const pintaPokemons = (pokemonLista = todosPokemon, imagenLista = []) => {
     const ul = document.querySelector(".listado");
     let ulContent = "";
-    let cont = 0;
     pokemonLista.forEach((pokemon, index) => {
-      cont++;
       const imagen = imagenLista[index];
-      
-          
       ulContent += `<li>
-                <h2>${pokemon.name}</h2>
-                <img src="${imagen.url}">
-                <p style="background-color: ${colorFondo};">${tipo}</p>
-              </li>`;
+        <h2>${pokemon.name}</h2>
+        <img src="${imagen.url}">
+      </li>`;
     });
     ul.innerHTML = ulContent;
   };
-
-  
-
-  
 
   const getRandomPokemon = () => {
     const index1 = Math.floor(Math.random() * todosPokemon.length);
@@ -39,16 +28,18 @@ const getPokemon = async () => {
     return [todosPokemon[index1], todosPokemon[index2]];
   };
   
-  const luchaPokemon = async () => {
-    const [pokemon1, pokemon2] = getRandomPokemon();
-    const response1 = await fetch(pokemon1.url);
-    const response2 = await fetch(pokemon2.url);
-    const pokemonData1 = await response1.json();
-    const pokemonData2 = await response2.json();
+  const luchaPokemon = async (pokemon1, pokemon2) => {
+    const [response1, response2] = await Promise.all([
+      fetch(pokemon1.url),
+      fetch(pokemon2.url)
+    ]);
+    const [pokemonData1, pokemonData2] = await Promise.all([
+      response1.json(),
+      response2.json()
+    ]);
   
     const nombre1 = pokemonData1.name;
     const nombre2 = pokemonData2.name;
-  
     let vida1 = pokemonData1.stats[0].base_stat;
     let vida2 = pokemonData2.stats[0].base_stat;
   
@@ -58,6 +49,7 @@ const getPokemon = async () => {
   
     const resultadoLuchaElement = document.getElementById("resultado-lucha");
     resultadoLuchaElement.innerHTML = '';
+  
     while (vida1 > 0 && vida2 > 0) {
       const ataque1 = pokemonData1.moves[Math.floor(Math.random() * pokemonData1.moves.length)];
       const ataque2 = pokemonData2.moves[Math.floor(Math.random() * pokemonData2.moves.length)];
@@ -79,47 +71,31 @@ const getPokemon = async () => {
   
     if (vida1 <= 0 && vida2 <= 0) {
       const textoResultado = "¡Es un empate!";
-      console.log(textoResultado);
       resultadoLuchaElement.innerHTML += textoResultado;
     } else if (vida1 <= 0) {
-      const textoResultado = `${nombre2} es el ganador!`;
-      console.log(textoResultado);
+      const textoResultado = `${nombre2} es el ganador.`;
       resultadoLuchaElement.innerHTML += textoResultado;
     } else {
-      const textoResultado = `${nombre1} es el ganador!`;
-      console.log(textoResultado);
+      const textoResultado = `${nombre1} es el ganador.`;
       resultadoLuchaElement.innerHTML += textoResultado;
     }
   };
-  const borrarResultadoLucha = () => {
-    const resultadoLuchaElement = document.getElementById("resultado-lucha");
-    resultadoLuchaElement.innerHTML = '';
-  };
 
+  const inputElement = document.getElementById("pokemon-input");
+  const buttonElement = document.getElementById("pokemon-button");
 
- 
-
-  
-
-  
-
-  const buscadorTipo = async () => {
-    const select = document.getElementById("filtro-tipo");
-    const btnBuscar = document.getElementById("btn-buscar");
-   
-    
-  };
-
-  
-
-  const btnLuchar = document.getElementById("btn-luchar");
-  btnLuchar.addEventListener("click", () => {
-   
-    const pokemon1 = todosPokemon[0]; // Elige el primer Pokémon de la lista
-    const pokemon2 = todosPokemon[1]; // Elige el segundo Pokémon de la lista
-    luchaPokemon(pokemon1, pokemon2);
-    borrarResultadoLucha();
+  buttonElement.addEventListener("click", () => {
+    const pokemonName = inputElement.value.toLowerCase();
+    const pokemon1 = todosPokemon.find(pokemon => pokemon.name === pokemonName);
+    if (pokemon1) {
+      const [pokemon2] = getRandomPokemon();
+      luchaPokemon(pokemon1, pokemon2);
+    } else {
+      console.log("No se encontró un Pokémon con ese nombre.");
+    }
   });
+
+  pintaPokemons();
 };
 
 getPokemon();
