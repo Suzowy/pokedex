@@ -48,6 +48,8 @@ const getPokemon = async () => {
           : tipo === "dragon"
           ? "crimson"
           : tipo;
+
+          
       ulContent += `<li>
                 <h2>${pokemon.name}</h2>
                 <img src="${imagen.url}">
