@@ -53,20 +53,6 @@
   background-color: rgb(144, 185, 238);
 }
 
-.div-lucha {
-  width: 30%;
-  height: auto;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content:center;
-  align-items:center;
-  border-radius: 20px;
-  margin-top: 20px;
-}
-
-
-
 
 .pokemon1 {
  
@@ -74,7 +60,8 @@
   height: 160px;
 }
 .vs{
-  width: 100px;
+  padding: 20px;
+  width: 90px;
   height: auto;
   background-color:#ffd33c;
 }
@@ -84,8 +71,8 @@
   height: 160px;
 }
 
-h3 {
-  
+.h3 {
+ 
   font-weight: bold;
   color: rgb(236, 15, 15);
   width: 33%;
@@ -95,7 +82,7 @@ h3 {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
+  
 }
 body {
   background-color: #ffd33c;
@@ -226,7 +213,7 @@ header {
 width: 100%;
 height: auto;
 font-weight: lighter;
-font-size: 15px;
+font-size: 12px;
 }
 p{
   width: 50%;
@@ -277,7 +264,8 @@ li:hover{
       }
   
       .vs{
-        width: 40px;
+        width: 30px;
+        padding: 10px;
         height: auto;
         background-color:#ffd33c;
       }

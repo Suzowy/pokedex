@@ -7,11 +7,11 @@ const getPokemon = async () => {
   const responseToJson = await response.json();
   let todosPokemon = responseToJson.results;
 
-  const pintaPokemons = (pokemonLista = todosPokemon, imagenLista = []) => {
+  const pintaPokemons = async (pokemonLista = todosPokemon, imagenLista = []) => {
     const ul = document.querySelector(".listado");
     let ulContent = "";
     let cont = 0;
-    pokemonLista.forEach((pokemon, index) => {
+    for (const [index, pokemon] of pokemonLista.entries()) {
       cont++;
       const imagen = imagenLista[index];
       const tipo = imagen.tipo;
@@ -48,12 +48,20 @@ const getPokemon = async () => {
           ? "crimson"
           : tipo;
 
-      ulContent += `<li>
-                <h2>${pokemon.name}</h2>
-                <img src="${imagen.url}" data-name="${pokemon.name}" class="pokemon-img">
-                <p style="background-color: ${colorFondo};">${tipo}</p>
-              </li>`;
-    });
+      const pokemonDataResponse = await fetch(pokemon.url);
+      const pokemonData = await pokemonDataResponse.json();
+      const habilidades = pokemonData.abilities.map((ability) => ability.ability.name);
+      const ataquesResponse = await fetch(pokemonData.moves[0].move.url);
+   
+      
+
+      ulContent += `
+        <li>
+          <h2>${pokemon.name}</h2>
+          <img src="${imagen.url}" data-name="${pokemon.name}" class="pokemon-img">
+          <p style="background-color: ${colorFondo};">${tipo}</p>
+     </li>`;
+    }
     ul.innerHTML = ulContent;
   };
 
@@ -65,7 +73,7 @@ const getPokemon = async () => {
       const filtraImg = buscaImagen(fotos, filtraPoke);
       if (filtraPoke.length === 0) {
         const imagenError = document.createElement("img");
-        imagenError.src = "tumblr_lmwsamrrxT1qagx30.0.0.gif";
+        imagenError.src = "error.gif";
         imagenError.classList.add("error-image");
         const ul = document.querySelector(".listado");
         ul.innerHTML = "";
@@ -148,25 +156,43 @@ const getPokemon = async () => {
 
     const resultadoLuchaElement = document.getElementById("resultado-lucha");
     resultadoLuchaElement.innerHTML = "";
-    while (vida1 > 0 && vida2 > 0) {
-      const ataque1 = pokemonData1.moves[Math.floor(Math.random() * pokemonData1.moves.length)];
-      const ataque2 = pokemonData2.moves[Math.floor(Math.random() * pokemonData2.moves.length)];
+    const escribirResultado = (texto, tiempo) => {
+      return new Promise((resolve) => {
+        let index = 0;
+        const interval = setInterval(() => {
+          resultadoLuchaElement.innerHTML += texto[index];
+          index++;
+          if (index === texto.length) {
+            clearInterval(interval);
+            resolve();
+          }
+        }, tiempo);
+      });
+    };
 
-      const daño1 = ataque1.power;
-      const daño2 = ataque2.power;
+    
+    while (vida1 > 0 && vida2 > 0) {
+      const ataqueIndex1 = Math.floor(Math.random() * pokemonData1.moves.length);
+      const ataqueIndex2 = Math.floor(Math.random() * pokemonData2.moves.length);
+      const ataque1 = pokemonData1.moves[ataqueIndex1].move.name;
+      const ataque2 = pokemonData2.moves[ataqueIndex2].move.name;
+      const daño1 = Math.floor(Math.random() * 50) + 1;
+      const daño2 = Math.floor(Math.random() * 50) + 1;
 
       vida2 -= daño1;
       vida1 -= daño2;
 
-      const textoLucha = `${nombre1} usa ${ataque1.name} y causa ${daño1} de daño.<br>
-                          ${nombre2} usa ${ataque2.name} y causa ${daño2} de daño.<br>
-                          ${nombre1} tiene ${vida1} puntos de vida restantes.<br>
-                          ${nombre2} tiene ${vida2} puntos de vida restantes.<br>`;
+      
 
-      console.log(textoLucha);
+      const textoLucha = `
+        ${nombre1} usa ${ataque1} y causa ${daño1} de daño.<br>
+        ${nombre2} usa ${ataque2} y causa ${daño2} de daño.<br>
+        ${nombre1} tiene ${vida1} de vida.<br>
+        ${nombre2} tiene ${vida2} de vida.<br>
+        <br>`;
+
       resultadoLuchaElement.innerHTML += textoLucha;
     }
-
     if (vida1 <= 0 && vida2 <= 0) {
       const textoResultado = "¡Es un empate!";
       console.log(textoResultado);
