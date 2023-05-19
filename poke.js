@@ -60,7 +60,7 @@ const getPokemon = async () => {
           <h2>${pokemon.name}</h2>
           <img src="${imagen.url}" data-name="${pokemon.name}" class="pokemon-img">
           <p style="background-color: ${colorFondo};">${tipo}</p>
-     </li>`;
+    </li>`;
     }
     ul.innerHTML = ulContent;
   };
