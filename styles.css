@@ -131,12 +131,10 @@ li {
 
 li:hover {
   transform: scale(1.1);
-  background-image: url('Se0P.gif');
-  
+  background-image: url('fondo.gif');
   background-position: center;
   background-size: auto;
   box-shadow: rgba(253, 69, 69, 0.977) 10px 10px 10px;
-
 }
 
 

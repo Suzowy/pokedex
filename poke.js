@@ -101,15 +101,23 @@ const getPokemon = async () => {
     if (pokemon1) {
       const [pokemon2] = getRandomPokemon();
       luchaPokemon(pokemon1, pokemon2);
+      scrollToBattle();
     } else {
       console.log("No se encontró un Pokémon con ese nombre.");
     }
   };
+  const scrollToBattle = () => {
+    const battleDiv = document.getElementById("div-lucha");
+    battleDiv.scrollIntoView({ behavior: "smooth" });
+  };
+
+
 
   document.addEventListener("click", (event) => {
     if (event.target.classList.contains("pokemon-img")) {
       const pokemonName = event.target.getAttribute("data-name");
       seleccionarPokemon(pokemonName);
+      
     }
   });
 
