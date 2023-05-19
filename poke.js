@@ -150,7 +150,7 @@ const getPokemon = async () => {
     let vida1 = pokemonData1.stats[0].base_stat;
     let vida2 = pokemonData2.stats[0].base_stat;
 
-    console.log(`¡Comienza la batalla entre ${nombre1} y ${nombre2}!`);
+    
     document.getElementById("pokemon-img1").src = `${api_get_imagen}${pokemon1.url.split("/")[6]}.png`;
     document.getElementById("pokemon-img2").src = `${api_get_imagen}${pokemon2.url.split("/")[6]}.png`;
 

@@ -94,7 +94,7 @@ img {
 }
 
 .listado {
-  background: linear-gradient(#ffd33c,rgba(70, 89, 156, 1));
+  background: linear-gradient(#ffd33c,#000000,rgba(70, 89, 156, 1));
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
