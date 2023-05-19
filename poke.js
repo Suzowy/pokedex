@@ -1,6 +1,5 @@
 const api_get_pokemon = `https://pokeapi.co/api/v2/pokemon`;
 const api_get_imagen = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/`;
-
 const num_pokemon = 150;
 
 const getPokemon = async () => {
@@ -49,10 +48,9 @@ const getPokemon = async () => {
           ? "crimson"
           : tipo;
 
-          
       ulContent += `<li>
                 <h2>${pokemon.name}</h2>
-                <img src="${imagen.url}">
+                <img src="${imagen.url}" data-name="${pokemon.name}" class="pokemon-img">
                 <p style="background-color: ${colorFondo};">${tipo}</p>
               </li>`;
     });
@@ -62,19 +60,17 @@ const getPokemon = async () => {
   const buscador = async () => {
     const input = document.body.querySelector("input");
     input.addEventListener("input", async () => {
-      borrarResultadoLucha();
       const filtraPoke = buscaPokemon(todosPokemon, input.value);
       const fotos = await muestraImagen();
       const filtraImg = buscaImagen(fotos, filtraPoke);
       if (filtraPoke.length === 0) {
-       
         const imagenError = document.createElement("img");
         imagenError.src = "tumblr_lmwsamrrxT1qagx30.0.0.gif";
         imagenError.classList.add("error-image");
         const ul = document.querySelector(".listado");
         ul.innerHTML = "";
         ul.appendChild(imagenError);
-         const textoError = document.createElement("h1");
+        const textoError = document.createElement("h1");
         textoError.textContent = "Oh no... ese Pokémon no existe, prueba otra vez.";
         textoError.classList.add("error-text");
         ul.appendChild(textoError);
@@ -100,6 +96,23 @@ const getPokemon = async () => {
     }
   };
 
+  const seleccionarPokemon = (pokemonName) => {
+    const pokemon1 = todosPokemon.find((pokemon) => pokemon.name === pokemonName);
+    if (pokemon1) {
+      const [pokemon2] = getRandomPokemon();
+      luchaPokemon(pokemon1, pokemon2);
+    } else {
+      console.log("No se encontró un Pokémon con ese nombre.");
+    }
+  };
+
+  document.addEventListener("click", (event) => {
+    if (event.target.classList.contains("pokemon-img")) {
+      const pokemonName = event.target.getAttribute("data-name");
+      seleccionarPokemon(pokemonName);
+    }
+  });
+
   const getRandomPokemon = () => {
     const index1 = Math.floor(Math.random() * todosPokemon.length);
     let index2 = Math.floor(Math.random() * todosPokemon.length);
@@ -108,45 +121,44 @@ const getPokemon = async () => {
     }
     return [todosPokemon[index1], todosPokemon[index2]];
   };
-  
-  const luchaPokemon = async () => {
-    const [pokemon1, pokemon2] = getRandomPokemon();
+
+  const luchaPokemon = async (pokemon1, pokemon2) => {
     const response1 = await fetch(pokemon1.url);
     const response2 = await fetch(pokemon2.url);
     const pokemonData1 = await response1.json();
     const pokemonData2 = await response2.json();
-  
+
     const nombre1 = pokemonData1.name;
     const nombre2 = pokemonData2.name;
-  
+
     let vida1 = pokemonData1.stats[0].base_stat;
     let vida2 = pokemonData2.stats[0].base_stat;
-  
+
     console.log(`¡Comienza la batalla entre ${nombre1} y ${nombre2}!`);
     document.getElementById("pokemon-img1").src = `${api_get_imagen}${pokemon1.url.split("/")[6]}.png`;
     document.getElementById("pokemon-img2").src = `${api_get_imagen}${pokemon2.url.split("/")[6]}.png`;
-  
+
     const resultadoLuchaElement = document.getElementById("resultado-lucha");
-    resultadoLuchaElement.innerHTML = '';
+    resultadoLuchaElement.innerHTML = "";
     while (vida1 > 0 && vida2 > 0) {
       const ataque1 = pokemonData1.moves[Math.floor(Math.random() * pokemonData1.moves.length)];
       const ataque2 = pokemonData2.moves[Math.floor(Math.random() * pokemonData2.moves.length)];
-  
+
       const daño1 = ataque1.power;
       const daño2 = ataque2.power;
-  
+
       vida2 -= daño1;
       vida1 -= daño2;
-  
+
       const textoLucha = `${nombre1} usa ${ataque1.name} y causa ${daño1} de daño.<br>
                           ${nombre2} usa ${ataque2.name} y causa ${daño2} de daño.<br>
                           ${nombre1} tiene ${vida1} puntos de vida restantes.<br>
                           ${nombre2} tiene ${vida2} puntos de vida restantes.<br>`;
-  
+
       console.log(textoLucha);
       resultadoLuchaElement.innerHTML += textoLucha;
     }
-  
+
     if (vida1 <= 0 && vida2 <= 0) {
       const textoResultado = "¡Es un empate!";
       console.log(textoResultado);
@@ -163,9 +175,8 @@ const getPokemon = async () => {
   };
   const borrarResultadoLucha = () => {
     const resultadoLuchaElement = document.getElementById("resultado-lucha");
-    resultadoLuchaElement.innerHTML = '';
+    resultadoLuchaElement.innerHTML = "";
   };
-
 
   const buscaImagen = (imagenLista, pokemonList) => {
     const filtraImg = [];
@@ -200,7 +211,7 @@ const getPokemon = async () => {
   const buscadorTipo = async () => {
     const select = document.getElementById("filtro-tipo");
     const btnBuscar = document.getElementById("btn-buscar");
-   
+
     btnBuscar.addEventListener("click", async () => {
       const tipo = select.value;
       const pokemonesFiltrados = await filtraPorTipo(todosPokemon, tipo);
@@ -217,11 +228,15 @@ const getPokemon = async () => {
 
   const btnLuchar = document.getElementById("btn-luchar");
   btnLuchar.addEventListener("click", () => {
-   
-    const pokemon1 = todosPokemon[0]; // Elige el primer Pokémon de la lista
-    const pokemon2 = todosPokemon[1]; // Elige el segundo Pokémon de la lista
+    const [pokemon1, pokemon2] = getRandomPokemon();
     luchaPokemon(pokemon1, pokemon2);
     borrarResultadoLucha();
+    pintaPokemons(
+      todosPokemon,
+      todosPokemon.map((pokemon, index) => ({
+        url: `${api_get_imagen}${index + 1}.png`,
+      }))
+    );
   });
 };
 
