@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap");
 .botones {
   align-items: center;
   text-align: center;
@@ -11,24 +9,22 @@
   width: 100px;
   height: 40px;
   text-align: center;
-  font-family: 'Gloria Hallelujah', cursive;
+  font-family: "Gloria Hallelujah", cursive;
   font-weight: bolder;
   border-radius: 50px;
   border: 3px, #ffffff;
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
   pointer-events: hand;
-
 }
 
 .select:hover {
   background-color: #ffffff;
-  color:red;
+  color: red;
   cursor: pointer;
 }
 
-
-.pikapika{
+.pikapika {
   margin-left: 20px;
   background-color: #ffd33c;
   width: 90px;
@@ -43,63 +39,54 @@
   height: 40px;
   text-align: center;
   font-weight: lighter;
-  font-family: 'Gloria Hallelujah', cursive;
+  font-family: "Gloria Hallelujah", cursive;
   border-radius: 50px;
   background-color: aliceblue;
- 
 }
 
 .input:hover {
   background-color: rgb(144, 185, 238);
 }
 
-
+.div-lucha {
+  padding: 30px;
+}
 .pokemon1 {
- 
   width: 160px;
   height: 160px;
 }
-.vs{
+.vs {
   padding: 20px;
   width: 90px;
   height: auto;
-  background-color:#ffd33c;
+  background-color: #ffd33c;
 }
 .pokemon2 {
-  
   width: 160px;
   height: 160px;
 }
 
+.bg-1 {
+  background-color: #ffd33c;
+}
 
-  .bg-1{
-    background-color:#ffd33c;
-   
-    
- }
- 
- .t-stroke {
-   color: transparent;
-   
-   -webkit-text-stroke-width: 2px;
-   
-   -webkit-text-stroke-color: #cd1010;
- }
- 
- .t-shadow {
-   text-shadow: 5px 9px #a6b2e6;
-   
- }
-  
+.t-stroke {
+  color: transparent;
 
+  -webkit-text-stroke-width: 2px;
 
+  -webkit-text-stroke-color: #cd1010;
+}
 
-
-
+.t-shadow {
+  text-shadow: 5px 9px #a6b2e6;
+}
+.result{
+  font-weight: bolder;
+}
 body {
   background-color: #ffd33c;
-  font-family: 'Gloria Hallelujah', cursive;
-  
+  font-family: "Gloria Hallelujah", cursive;
 }
 
 img {
@@ -107,17 +94,21 @@ img {
 }
 
 .listado {
-  background: linear-gradient(#ffd33c,#000000,rgba(70, 89, 156, 1));
+  background: linear-gradient(#ffd33c, #000000, rgba(70, 89, 156, 1));
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
- cursor: pointer;
-
+  cursor: pointer;
 }
 
 li {
-  background: linear-gradient(130deg, rgb(255, 1, 65), rgb(41, 39, 39),rgb(19, 122, 241));
+  background: linear-gradient(
+    130deg,
+    rgb(255, 1, 65),
+    rgb(41, 39, 39),
+    rgb(19, 122, 241)
+  );
   box-shadow: rgba(138, 222, 223, 0.99) 10px 10px 10px;
   list-style-type: none;
   text-align: center;
@@ -130,13 +121,11 @@ li {
 
 li:hover {
   transform: scale(1.1);
-  background-image: url('fondo.gif');
+  background-image: url("fondo.gif");
   background-position: center;
   background-size: auto;
   box-shadow: rgba(253, 69, 69, 0.977) 10px 10px 10px;
 }
-
-
 
 h2 {
   color: white;
@@ -154,11 +143,10 @@ p {
   width: 33%;
   height: auto;
   margin: 0 auto;
-   border-radius: 10px;
+  border-radius: 10px;
   color: black;
   font-size: 10px;
   border: 2px solid rgb(255, 255, 110);
-  
 }
 
 header {
@@ -173,7 +161,7 @@ header {
 
 /* Clase para la imagen de error */
 .error-image {
-  width:600px;
+  width: 600px;
   height: 500px;
   margin-bottom: 20px;
   border: 5px solid rgb(0, 0, 0);
@@ -185,14 +173,9 @@ header {
   margin-top: 200px;
   color: rgb(255, 255, 255);
   font-weight: bold;
-  
-
 }
 
-
-
 @media (max-width: 600px) {
-
   .botones {
     align-items: center;
     text-align: center;
@@ -205,13 +188,12 @@ header {
     font-weight: lighter;
   }
 
-
   .select {
-   width: 80px;
-   height: auto;
-   font-size: 10px;
-   font-weight: lighter;
-   border-color: #2a1ffd;
+    width: 80px;
+    height: auto;
+    font-size: 10px;
+    font-weight: lighter;
+    border-color: #2a1ffd;
   }
 
   .pikapika {
@@ -221,29 +203,26 @@ header {
     margin-block: -20px;
   }
 
-.bg-1{
-width: 100%;
-height: auto;
-font-weight: lighter;
-font-size: 7px;
-
-}
-p{
-  width: 50%;
-  font-size: 8px;
-}
-
+  .bg-1 {
+    width: 100%;
+    height: auto;
+    font-weight: lighter;
+    font-size: 7px;
+  }
+  p {
+    width: 50%;
+    font-size: 8px;
+  }
 
   li {
     width: 25%;
-    height:140px;
- }
+    height: 140px;
+  }
 
-li:hover{
-  background-position: center;
-  background-size: cover;
- 
-}
+  li:hover {
+    background-position: center;
+    background-size: cover;
+  }
 
   h2 {
     font-size: 8px;
@@ -254,36 +233,29 @@ li:hover{
   }
 
   .error-text {
-  font-size: 20px;
-  text-decoration-line: underline;
-  color: #ffffff;
-  font-weight: bold;
-    
-
+    font-size: 20px;
+    text-decoration-line: underline;
+    color: #ffffff;
+    font-weight: bold;
   }
   .error-image {
-    width:100%; 
+    width: 100%;
     height: auto;
   }
 
+  .pokemon1 {
+    width: 60px;
+    height: 60px;
+  }
+  .pokemon2 {
+    width: 60px;
+    height: 60px;
+  }
 
-
-  .pokemon1{
-    width:60px;
-    height:60px;
-   
-      }
-      .pokemon2{
-        width: 60px;
-        height: 60px;
-      }
-  
-      .vs{
-        width: 30px;
-        padding: 10px;
-        height: auto;
-        background-color:#ffd33c;
-      }
-
-
+  .vs {
+    width: 30px;
+    padding: 10px;
+    height: auto;
+    background-color: #ffd33c;
+  }
 }
