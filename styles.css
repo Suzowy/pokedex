@@ -107,10 +107,12 @@ img {
 }
 
 li {
-  background: linear-gradient(130deg,
-      rgb(255, 1, 65),
-      rgb(41, 39, 39),
-      rgb(19, 122, 241));
+  background: linear-gradient(
+    130deg,
+    rgb(255, 1, 65),
+    rgb(41, 39, 39),
+    rgb(19, 122, 241)
+  );
   box-shadow: rgba(138, 222, 223, 0.99) 10px 10px 10px;
   list-style-type: none;
   text-align: center;
@@ -211,7 +213,10 @@ header {
     font-weight: lighter;
     font-size: 7px;
   }
-
+  .result {
+    font-weight: lighter;
+    font-size: 10px;
+  }
   p {
     width: 50%;
     font-size: 8px;

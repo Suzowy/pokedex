@@ -268,18 +268,6 @@ const getPokemon = async () => {
   buscador();
   buscadorTipo();
 
-  const btnLuchar = document.getElementById("btn-luchar");
-  btnLuchar.addEventListener("click", () => {
-    const [pokemon1, pokemon2] = getRandomPokemon();
-    luchaPokemon(pokemon1, pokemon2);
-    borrarResultadoLucha();
-    pintaPokemons(
-      todosPokemon,
-      todosPokemon.map((pokemon, index) => ({
-        url: `${api_get_imagen}${index + 1}.png`,
-      }))
-    );
-  });
 };
 
 getPokemon();
