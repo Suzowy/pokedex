@@ -71,18 +71,31 @@
   height: 160px;
 }
 
-.h3 {
-  font-weight: bold;
-  color: rgb(0, 0, 0);
-  width: 33%;
-  height: auto;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+
+  .bg-1{
+    background-color:#ffd33c;
+   
+    
+ }
+ 
+ .t-stroke {
+   color: transparent;
+   
+   -webkit-text-stroke-width: 2px;
+   
+   -webkit-text-stroke-color: #cd1010;
+ }
+ 
+ .t-shadow {
+   text-shadow: 5px 9px #a6b2e6;
+   
+ }
   
-}
+
+
+
+
+
 body {
   background-color: #ffd33c;
   font-family: 'Gloria Hallelujah', cursive;
@@ -208,16 +221,19 @@ header {
     margin-block: -20px;
   }
 
-.h3{
+.bg-1{
 width: 100%;
 height: auto;
 font-weight: lighter;
-font-size: 12px;
+font-size: 7px;
+
 }
 p{
   width: 50%;
   font-size: 8px;
 }
+
+
   li {
     width: 25%;
     height:140px;
