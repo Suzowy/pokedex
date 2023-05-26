@@ -216,8 +216,9 @@ header {
     font-size: 10px;
   }
   p {
-    width: 100%;
+    width: 80%;
     font-size:8px;
+    border: 1px solid rgb(255, 255, 110);
   }
 .listado{
   justify-content: flex-start;
@@ -225,7 +226,8 @@ width: 100%;
 
 }
   li {
-    width:10%;
+   
+    width:11%;
     height:auto;
   
   }
