@@ -196,7 +196,7 @@ const getPokemon = async () => {
       ${nombre1} tiene ${vida1} de vida.
       ${nombre2} tiene ${vida2} de vida.\n`;
 
-      await escribirResultado(textoLucha, 50);
+      await escribirResultado(textoLucha, 60);
       resultadoLuchaElement.innerHTML += textoLucha;
     }
     if (vida1 <= 0 && vida2 <= 0) {

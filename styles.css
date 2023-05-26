@@ -54,8 +54,8 @@
 }
 
 .pokemon1 {
-  width: 160px;
-  height: 160px;
+  width: 130px;
+  height: auto;
 }
 
 .vs {
@@ -66,8 +66,8 @@
 }
 
 .pokemon2 {
-  width: 160px;
-  height: 160px;
+  width: 130px;
+  height:auto;
 }
 
 .bg-1 {
@@ -77,12 +77,10 @@
 .t-stroke {
   color: transparent;
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #cd1010;
+  -webkit-text-stroke-color: #1016cd;
 }
 
-.t-shadow {
-  text-shadow: 5px 9px #a6b2e6;
-}
+
 
 .result {
   font-weight: bolder;
@@ -218,13 +216,18 @@ header {
     font-size: 10px;
   }
   p {
-    width: 50%;
-    font-size: 8px;
+    width: 100%;
+    font-size:8px;
   }
+.listado{
+  justify-content: flex-start;
+width: 100%;
 
+}
   li {
-    width: 25%;
-    height: 140px;
+    width:10%;
+    height:auto;
+  
   }
 
   li:hover {
@@ -233,7 +236,14 @@ header {
   }
 
   h2 {
-    font-size: 8px;
+    color: white;
+    text-transform: uppercase;
+    font-style: oblique;
+    font-size: 6px;
+    background-color: black;
+    border: 1px solid rgb(255, 255, 110);
+    width: 100%;
+    height:auto;
   }
 
   img {
