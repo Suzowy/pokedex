@@ -253,6 +253,8 @@ width: 100%;
   }
 
   .error-text {
+    width: 90%;
+    text-align: start;
     font-size: 20px;
     text-decoration-line: underline;
     color: #ffffff;
@@ -260,18 +262,19 @@ width: 100%;
   }
 
   .error-image {
-    width: 100%;
+    
+    width: 80%;
     height: auto;
   }
 
   .pokemon1 {
     width: 60px;
-    height: 60px;
+    height: auto;
   }
 
   .pokemon2 {
     width: 60px;
-    height: 60px;
+    height: auto;
   }
 
   .vs {
